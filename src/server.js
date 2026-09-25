@@ -16,11 +16,40 @@ if (process.env.NODE_ENV !== 'test') {
   connectDB();
 }
 
-// Middleware
-app.use(cors({
-  origin: '*', // Allow development and production origins
+// Robust Express 5 CORS Middleware: Dynamically reflects incoming origin (e.g. Vercel) and handles OPTIONS
+app.use((req, res, next) => {
+  const requestOrigin = req.headers.origin;
+  if (requestOrigin) {
+    res.setHeader('Access-Control-Allow-Origin', requestOrigin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  }
+
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, PATCH, DELETE, OPTIONS'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.setHeader('Access-Control-Expose-Headers', 'Content-Disposition');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
+
+const corsOptions = {
+  origin: true, // Express cors reflects req.header('Origin')
   credentials: true,
-}));
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
