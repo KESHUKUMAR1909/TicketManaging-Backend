@@ -4,6 +4,12 @@ An institutional MERN stack platform designed for universities and colleges to s
 
 Built with a **Glassmorphism Design System** on the frontend (Vite + React) and a **scalable Express + MongoDB** architecture capable of handling 5,000 to 10,000 concurrent users.
 
+### 🌐 Live Deployment & Repositories
+- **Live Backend API (Render)**: [https://ticketmanaging-backend.onrender.com](https://ticketmanaging-backend.onrender.com)
+- **API Health Check**: [https://ticketmanaging-backend.onrender.com/api/health](https://ticketmanaging-backend.onrender.com/api/health)
+- **Frontend Repository**: [https://github.com/KESHUKUMAR1909/TicketManaging-Frontend](https://github.com/KESHUKUMAR1909/TicketManaging-Frontend)
+- **Backend Repository**: [https://github.com/KESHUKUMAR1909/TicketManaging-Backend](https://github.com/KESHUKUMAR1909/TicketManaging-Backend)
+
 ---
 
 ## 📑 Table of Contents

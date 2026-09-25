@@ -28,6 +28,17 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
 
+// Root Route
+app.get('/', (req, res) => {
+  res.json({
+    status: 'online',
+    message: 'CampusDesk Student Support & Ticket Management API is live on Render',
+    health: '/api/health',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Health Check
 app.get('/api/health', (req, res) => {
   res.json({
